@@ -1,0 +1,61 @@
+/*
+PROGRAM 3
+Write a SQL statement to create a table employees including columns employee_id, first_name, last_name, email, phone_number hire_date, job_id, salary, 
+commission, manager_id and department_id and make sure that, the employee_id column does not contain any duplicate value at the time of insertion, 
+and the foreign key column department_id, reference by the column department_id of departments table, can contain only those values which are exists in
+the departments table and another foreign key column job_id, referenced by the column job_id of jobs table, can contain only those values which are exists 
+in the jobs table. The InnoDB Engine have been used to create the tables
+*/
+
+
+mysql> use anp_7344;
+Database changed
+mysql> create table employees(employee_id INT PRIMARY KEY,first_name VARCHAR(50),last_name VARCHAR(50),email VARCHAR(100),phone_number VARCHAR(20),hire_date DATE,job_id INT,salary DECIMAL(10, 2),commission DECIMAL(5, 2),manager_id INT,department_id INT);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc employees;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| employee_id   | int           | NO   | PRI | NULL    |       |
+| first_name    | varchar(50)   | YES  |     | NULL    |       |
+| last_name     | varchar(50)   | YES  |     | NULL    |       |
+| email         | varchar(100)  | YES  |     | NULL    |       |
+| phone_number  | varchar(20)   | YES  |     | NULL    |       |
+| hire_date     | date          | YES  |     | NULL    |       |
+| job_id        | int           | YES  |     | NULL    |       |
+| salary        | decimal(10,2) | YES  |     | NULL    |       |
+| commission    | decimal(5,2)  | YES  |     | NULL    |       |
+| manager_id    | int           | YES  |     | NULL    |       |
+| department_id | int           | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+11 rows in set (0.01 sec)
+
+mysql> create table department(department_id INT,department_name VARCHAR(20),manager_id INT,location_id INT);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc department;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| department_id   | int         | YES  |     | NULL    |       |
+| department_name | varchar(20) | YES  |     | NULL    |       |
+| manager_id      | int         | YES  |     | NULL    |       |
+| location_id     | int         | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table itjobs(job_id INT,job_title VARCHAR(20),min_salary DECIMAL(7, 0),max_salary DECIMAL(7, 0));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc itjobs;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| job_id     | int          | YES  |     | NULL    |       |
+| job_title  | varchar(20)  | YES  |     | NULL    |       |
+| min_salary | decimal(7,0) | YES  |     | NULL    |       |
+| max_salary | decimal(7,0) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+

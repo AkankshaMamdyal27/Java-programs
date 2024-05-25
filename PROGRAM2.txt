@@ -1,0 +1,45 @@
+/*
+PROGRAM 2
+Write a SQL statement to create a table named jobs including columns job_id, job_title, min_salary, max_salary and 
+check whether the max_salary amount exceeding the upper limit 25000
+*/
+
+mysql> use anp_7344;
+Database changed
+mysql>  create table jobs(jon_id INT PRIMARY KEY,job_title VARCHAR(255),minimum_salary DECIMAL(10, 3),maximum_salary DECIMAL(25, 5),CONSTRAINT check_maximum_salary CHECK (maximum_salary <=25000));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc jobs;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| jon_id         | int           | NO   | PRI | NULL    |       |
+| job_title      | varchar(255)  | YES  |     | NULL    |       |
+| minimum_salary | decimal(10,3) | YES  |     | NULL    |       |
+| maximum_salary | decimal(25,5) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql>  insert into jobs values(101, "Full Stack Developer", 30000, 19000),(102, "Software Engineer", 20000, 12000),(103, "Data Analystic", 19000, 11000);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from jobs;
++--------+----------------------+----------------+----------------+
+| jon_id | job_title            | minimum_salary | maximum_salary |
++--------+----------------------+----------------+----------------+
+|    101 | Full Stack Developer |      30000.000 |    19000.00000 |
+|    102 | Software Engineer    |      20000.000 |    12000.00000 |
+|    103 | Data Analystic       |      19000.000 |    11000.00000 |
++--------+----------------------+----------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql>  select (maximum_salary) AS maximum_salary FROM jobs;
++----------------+
+| maximum_salary |
++----------------+
+|    19000.00000 |
+|    12000.00000 |
+|    11000.00000 |
++----------------+
+3 rows in set (0.00 sec)
