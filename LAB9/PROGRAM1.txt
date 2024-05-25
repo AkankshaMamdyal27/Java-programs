@@ -1,0 +1,19 @@
+/*
+PROGRAM 1
+Write a SQL statement to create a simple table countries including columns country_id,country_name and region_id
+*/
+
+mysql> use anudip;
+Database changed
+mysql> create table countries(country_id INT PRIMARY KEY,country_name VARCHAR(255),region_id INT);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc countries;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| country_id   | int          | NO   | PRI | NULL    |       |
+| country_name | varchar(255) | YES  |     | NULL    |       |
+| region_id    | int          | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)

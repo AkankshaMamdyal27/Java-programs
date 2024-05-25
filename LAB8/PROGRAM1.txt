@@ -1,0 +1,112 @@
+PROBLEM 1
+
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE anplab8;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use anplab8;
+Database changed
+mysql> Create table Customer(Customer_id varchar(255) primary key, first_name varchar(255), Last_name varchar(255));
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> create table Orders(order_id integer primary key,customer_id integer foreign key references customer(customer_id),order_date varchar(15),total_amount varchar);
+mysql> create table Orders(order_id integer primary key,customer_id integer,order_date varchar(15),total_amount varchar(50),FOREIGN KEY(customer_id) REFERENCES customer(customer_id));
+Query OK, 0 rows affected (1.28 sec)
+
+
+
+mysql> DESC Customer;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Customer_id | varchar(255) | NO   | PRI | NULL    |       |
+| first_name  | varchar(255) | YES  |     | NULL    |       |
+| Last_name   | varchar(255) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.07 sec)
+
+mysql> INSERT INTO Customer VALUES(01, 'Akanksha','Mamdyal');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO Customer VALUES(02, 'Nandini','Saka');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Customer VALUES(03, 'Pranali','Sandhupatla');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO Customer VALUES(04, 'Deeksha','Ubale');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Customer VALUES(05, 'Jaya','Mergu');
+Query OK, 1 row affected (0.01 sec)
+
+
+
+mysql> select * from Customer;
++-------------+------------+-------------+
+| Customer_id | first_name | Last_name   |
++-------------+------------+-------------+
+| 1           | Akanksha   | Mamdyal     |
+| 2           | Nandini    | Saka        |
+| 3           | Pranali    | Sandhupatla |
+| 4           | Deeksha    | Ubale       |
+| 5           | Jaya       | Mergu       |
+|             |            |             |
++-------------+------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> create table orders(Order_id integer primary key, Customer_id integer, order_date varchar(50), Total_amount varchar(50), FOREIGN KEY(Customer_id)REFERENCES customer1(Customer_id));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc orders;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Order_id     | int         | NO   | PRI | NULL    |       |
+| Customer_id  | int         | YES  | MUL | NULL    |       |
+| order_date   | varchar(50) | YES  |     | NULL    |       |
+| Total_amount | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+
+mysql> insert into orders values(1,1,"12-04-2024","175.3"),(2,2,"11-04-2024","3251"),(3,3,"31-9-2023","67675.7"),(4,4,"5-6-2023","76587.0"),(5,5,"1-9-2009","53.67");
+Query OK, 5 rows affected (0.26 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select first_name,Last_name,order_date,total_amount from customer inner join orders on customer.customer_id=orders.customer_id;
++------------+-----------+------------+--------------+
+| first_name | Last_name | order_date | total_amount |
++------------+-----------+------------+--------------+
+| Akanksha   | Mamdyal   | 12-04-2024 | 175.3        |
+| Nandini    | Saka      | 11-04-2024 | 3251         |
+| Pranali    | Sandupatla| 31-9-2023  | 67675.7      |
+| Deeksha    | Ubale     | 5-6-2023   | 76587.0      |
+| Jaya       | Meragu    | 1-9-2009   | 53.67        |
++------------+-----------+------------+--------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
